@@ -1,0 +1,25 @@
+.Login{
+margin-bottom: 70px;
+}
+
+.formularioLogin{
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.tituloLogin{
+    text-align: center;
+    padding-bottom: 20px;
+}
+.mensajeError{
+    color: red;
+}
+.cuadroError{
+    background-color: rgb(228, 169, 179);
+    border-width: 2px;
+    border-color: red;
+}
+
+.form-check a{
+    color: orangered;
+}

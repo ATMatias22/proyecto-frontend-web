@@ -1,0 +1,36 @@
+.Inicio {
+  text-align: center;
+}
+
+h3{
+  color:orangered;
+  font-weight: bold;
+}
+
+.tituloTexto{
+  font-size: 20px;
+
+}
+
+.row {
+  margin-top: 80px;
+}
+
+.subtitulo{
+color: orangered;
+}
+
+.texto1 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-image: url(../../Images/hogar.jpg);
+  background-size: cover;
+}
+
+.texto2{
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+
+

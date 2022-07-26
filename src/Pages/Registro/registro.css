@@ -1,0 +1,23 @@
+.Register{
+    margin-bottom: 70px;
+}
+
+.formularioRegistro{
+    padding-left: 300px;
+    padding-right: 300px;
+}
+
+.tituloRegistro{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.cuadroError{
+    background-color: rgb(228, 169, 179);
+    border-width: 2px;
+    border-color: red;
+}
+
+.mensajeError{
+    color: red;
+}
