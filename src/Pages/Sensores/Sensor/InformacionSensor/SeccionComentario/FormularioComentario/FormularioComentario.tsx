@@ -1,23 +1,33 @@
 import axios from "axios";
 import { useState } from "react";
-import { IFormularioComentario } from "../interface";
+import { useForm } from "react-hook-form";
+import { IComentario } from "../interface";
+
 
 interface Props {
   idProducto: number;
   getComentarios: () => void;
 }
 
+
+interface IFormularioComentario {
+  comment?: string;
+}
+
 export const FormularioComentario = ({ idProducto, getComentarios }: Props) => {
   const [error, setError] = useState<string>();
   const [success, setSuccess] = useState<string>();
-  const [comentario, setComentario] = useState<string>();
 
-  const clearForm = () => {
-    setComentario("");
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormularioComentario>({
+    mode: "onChange",
+  });
 
-  const agregarComentario = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const agregarComentario = handleSubmit((data, event) => {
+    event?.preventDefault();
     const URL = "http://localhost:8080/sensor/api/comments";
 
     if (localStorage.getItem("token")) {
@@ -34,19 +44,18 @@ export const FormularioComentario = ({ idProducto, getComentarios }: Props) => {
       const values = JSON.parse(payloadDecoded);
       const email = values.email;
 
-      const data: IFormularioComentario = {
-        comment: comentario,
+      const comentario: IComentario = {
+        comment: data.comment,
         email,
         idProduct: idProducto,
       };
 
       axios
-        .post(URL, data, config)
+        .post(URL, comentario, config)
         .then((response) => {
-          console.log(response);
           setSuccess("Se creo el comentario correctamente");
-          clearForm();
           setError("");
+          event?.target.reset();
           getComentarios();
         })
         .catch((error) => {
@@ -58,7 +67,7 @@ export const FormularioComentario = ({ idProducto, getComentarios }: Props) => {
     } else {
       setError("Debe iniciar sesion para comentar");
     }
-  };
+  });
 
   return (
     <div className="container">
@@ -71,12 +80,22 @@ export const FormularioComentario = ({ idProducto, getComentarios }: Props) => {
           {" "}
           Comentario <br />
           <textarea
-            required
-            onChange={(e: React.FormEvent<HTMLTextAreaElement>) =>
-              setComentario(e.currentTarget.value)
-            }
-            value={comentario}
-          ></textarea>
+            placeholder="Mensaje"
+            className={`${
+              errors.comment && "cuadroError"
+            }`}
+            {...register("comment", {
+              required: {
+                value: true,
+                message: "Ingrese su comentario",
+              },
+            })}
+          />
+          {errors.comment && (
+            <span className={errors.comment && "mensajeError"}>
+              {errors.comment.message}
+            </span>
+          )}
         </p>
 
         <button type="submit" className="btn btn-primary boton-formulario">

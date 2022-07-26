@@ -9,11 +9,3 @@ export interface IComentario{
 
 }
 
-
-export interface IFormularioComentario{
-
-  email?:string,
-  idProduct?:number,
-  comment?:string
-
-}
