@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./login.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RUTA from "../../routes";
 
 type InputsFormularioLogin = {
@@ -15,7 +15,6 @@ interface UsuarioLogin {
   password: string;
 }
 
-
 export const Login = () => {
   const {
     register,
@@ -25,7 +24,15 @@ export const Login = () => {
     mode: "onChange",
   });
 
+  const navigate = useNavigate();
+
   const [errorLogin, setErrorLogin] = useState<string>();
+
+  const iniciarSesion = (token: string): void => {
+    window.localStorage.removeItem("token");
+    navigate(RUTA.PERFIL);
+    localStorage.setItem("token", token);
+  };
 
   const onSubmit = handleSubmit((data, event) => {
     console.log(data);
@@ -38,14 +45,13 @@ export const Login = () => {
       .post("http://localhost:8080/sensor/api/auth/login", usuario)
       .then((res) => {
         setErrorLogin("");
-        console.log(res.data)
-        console.log(res.data.jwt?.accessToken)
-        const token:string = res.data.jwt.accessToken;
+        console.log(res.data);
+        console.log(res.data.jwt?.accessToken);
+        const token: string = res.data.jwt.accessToken;
 
-/*         if(!localStorage.getItem("token")){ */
-          localStorage.setItem("token",token);
-/*         } */
-     /*    const payload = token.split('.')[1];
+        /*         if(!localStorage.getItem("token")){ */
+        /*         } */
+        /*    const payload = token.split('.')[1];
         const payloadDecoded = atob(payload);
         const values = JSON.parse(payloadDecoded);
         const email11 = values.email;
@@ -53,9 +59,10 @@ export const Login = () => {
         const iss = values.iss;
         const iat = values.iat;
         const exp = values.exp; */
-   
+
+        iniciarSesion(token);
       })
-      .catch((err)  => {
+      .catch((err) => {
         console.log(err.response.data);
         console.log(err.response.data.error.message);
         setErrorLogin(err.response.data.error.message);
@@ -66,7 +73,6 @@ export const Login = () => {
     <div className="Login">
       <div className="row align-items-center mx-0">
         <div className="col formularioLogin">
-
           {errorLogin && <div className="alert alert-danger">{errorLogin}</div>}
 
           <h3 className="text-center mb-5 title">
@@ -126,7 +132,8 @@ export const Login = () => {
               <div className="col d-flex justify-content-center">
                 <div className="form-check">
                   <p>
-                    ¿No esta registrado? <Link to={RUTA.REGISTRO}>Registrarse</Link>
+                    ¿No esta registrado?{" "}
+                    <Link to={RUTA.REGISTRO}>Registrarse</Link>
                   </p>
                 </div>
               </div>
@@ -144,5 +151,4 @@ export const Login = () => {
       </div>
     </div>
   );
-}
-
+};

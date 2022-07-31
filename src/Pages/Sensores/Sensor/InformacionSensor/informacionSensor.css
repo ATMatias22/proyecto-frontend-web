@@ -8,7 +8,7 @@ h4 {
 }
 
 .descripcion {
-  padding-left: 20px;
+  padding-left: 150px;
 }
 
 #formulario input {
@@ -22,3 +22,18 @@ textarea {
   height: 100px;
 }
 
+  .iconoEstrella{
+    padding-right: 10px;
+  }
+
+  .contenido{
+    padding-left: 25px;
+  }
+
+  .alerta{
+    margin-left: 25px;
+  }
+
+  .botonFavoritos{
+    margin-bottom: -30px;
+  }

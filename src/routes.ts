@@ -8,13 +8,15 @@ const CONTACTO: string = "/contacto";
 const FAVORITOS: string = "/favoritos";
 const SENSORES: string = "/sensores";
 
-const SENSOR:Sensor = {
+const SENSOR: Sensor = {
   RUTA_SIN_PARAMETROS: "/sensor",
   RUTA_CON_PARAMETROS: "/sensor/:idProducto",
 };
 
 const LOGIN: string = "/login";
 const REGISTRO: string = "/registro";
+const COMPRAS_REALIZADAS: string = "/comprasrealizadas";
+const PERFIL: string = "/perfil";
 
 const RUTA = {
   INICIO,
@@ -24,6 +26,8 @@ const RUTA = {
   SENSOR,
   LOGIN,
   REGISTRO,
+  COMPRAS_REALIZADAS,
+  PERFIL,
 };
 
 export default RUTA;

@@ -5,7 +5,7 @@ import { Header } from "../Header/Header";
 export const TemplateHeaderFooter = () => {
   return (
     <>
-      <Header />
+      <Header  />
       <Outlet />
       <Footer />
     </>

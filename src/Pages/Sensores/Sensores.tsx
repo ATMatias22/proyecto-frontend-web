@@ -9,12 +9,16 @@ import { Sensor } from "./Sensor/Sensor";
 
 export const Sensores = ()=> {
   const [productos, setProductos] = useState<IProducto[]>([]);
+
+
   const getProductos = () => {
     axios.get("http://localhost:8080/sensor/api/products/all")
       .then((res) => {
         setProductos(res.data);
       });
   };
+
+
 
   useEffect(() => {
     getProductos();
