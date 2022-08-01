@@ -1,23 +1,17 @@
 import { useEffect, useState } from "react";
 import "./sensores.css";
-import axios from "axios"
+import axios from "axios";
 import { IProducto } from "./interface";
 import { Sensor } from "./Sensor/Sensor";
 
-
-
-
-export const Sensores = ()=> {
+export const Sensores = () => {
   const [productos, setProductos] = useState<IProducto[]>([]);
 
-
   const getProductos = () => {
-    axios.get("http://localhost:8080/sensor/api/products/all")
-      .then((res) => {
-        setProductos(res.data);
-      });
+    axios.get("http://localhost:8080/sensor/api/products/all").then((res) => {
+      setProductos(res.data);
+    });
   };
-
 
 
   useEffect(() => {
@@ -36,5 +30,4 @@ export const Sensores = ()=> {
       </div>
     </div>
   );
-}
-
+};

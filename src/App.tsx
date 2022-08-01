@@ -11,6 +11,8 @@ import { Contacto } from "./Pages/Contacto/Contacto";
 import { Perfil } from "./Pages/SeccionesSoloLogueados/Perfil/Perfil";
 import { CompraRealizada } from "./Pages/SeccionesSoloLogueados/ComprasRealizadas/CompraRealizada";
 import { DataProvider } from "./context/DataContext";
+import { Error404 } from "./Pages/Error404/Error404";
+import { Test } from "./Pages/Test/Test";
 
 
 
@@ -31,6 +33,7 @@ function App() {
               <Route path={RUTA.LOGIN} element={<Login />} />
               <Route path={RUTA.REGISTRO} element={<Registro />} />
               <Route path={RUTA.INICIO} element={<Inicio />} />
+              <Route path={RUTA.ERROR_404} element={<Error404 />} />
               <Route path={RUTA.PERFIL} element={<Perfil />} />
               <Route
                 path={RUTA.COMPRAS_REALIZADAS}

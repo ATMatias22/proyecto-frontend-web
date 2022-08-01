@@ -1,7 +1,7 @@
 import { IProducto } from "../interface";
-import sensor from "../../../Images/sensor.jpg";
 import { Link } from "react-router-dom";
 import RUTA from "../../../routes";
+import "./styles.css"
 
 interface Props {
   product: IProducto;
@@ -12,7 +12,7 @@ export const Sensor = ({ product }: Props) => {
   return (
     <Link to={RUTA.SENSOR.RUTA_SIN_PARAMETROS + "/" + product.id}>
       <div className="product">
-        <img src={sensor} alt={product.descripcion} id="test" />
+        <img src={product.file} alt={product.descripcion} className="img" />
         <h3>{product.name}</h3>
         <div className="price">${product.price}</div>
       </div>

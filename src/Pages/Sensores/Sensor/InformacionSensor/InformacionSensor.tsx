@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import sensor from "../../../../Images/sensor.jpg";
 import "./informacionSensor.css";
 import axios from "axios";
 import { SeccionComentario } from "./SeccionComentario/SeccionComentario";
 import { IComentario } from "./SeccionComentario/interface";
 import { useForm } from "react-hook-form";
+import RUTA from "../../../../routes";
 
 interface Producto {
   id?: number;
@@ -13,6 +14,7 @@ interface Producto {
   description?: string;
   idUser?: number;
   price?: number;
+  file?:string;
 }
 
 interface IComprarPrducto {
@@ -31,6 +33,8 @@ export const InformacionSensor = () => {
   const [comentarios, setComentarios] = useState<IComentario[]>([]);
   const [error, setError] = useState<string>("");
   const [exitoso, setExitoso] = useState<string>("");
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -82,11 +86,13 @@ export const InformacionSensor = () => {
     axios
       .get("http://localhost:8080/sensor/api/products/" + idProducto)
       .then((res) => {
+        console.log(res.data)
         setProducto(res.data);
       })
       .catch((err) => {
         console.log(err.response.data);
         console.log(err.response.data.error.message);
+        navigate(RUTA.ERROR_404)
       });
   };
 
@@ -115,7 +121,7 @@ export const InformacionSensor = () => {
             <div className="row mx-0">
               <div className="col-md-5 single-top">
                 <div className="flexslider">
-                  <img className="imagenDesc" src={sensor} alt="imagen del sensor" />
+                  <img className="imagenDesc" src={producto.file} alt="imagen del sensor" />
                 </div>
               </div>
               <div className="col-md-7 single-top-left simpleCart_shelfItem descripcion">

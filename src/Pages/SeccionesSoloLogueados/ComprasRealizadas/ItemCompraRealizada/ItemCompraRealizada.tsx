@@ -27,7 +27,7 @@ export const ItemCompraRealizada = ({compra}: Props) => {
         <p className="datosTabla">{compra.quantity}</p>
       </td>
       <td>
-        <p className="datosTabla datosTabla2">{compra.price}</p>
+        <p className="datosTabla datosTabla2">${compra.price}</p>
       </td>
     </tr>
   );

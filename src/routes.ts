@@ -17,6 +17,7 @@ const LOGIN: string = "/login";
 const REGISTRO: string = "/registro";
 const COMPRAS_REALIZADAS: string = "/comprasrealizadas";
 const PERFIL: string = "/perfil";
+const ERROR_404: string = "/error404";
 
 const RUTA = {
   INICIO,
@@ -28,6 +29,7 @@ const RUTA = {
   REGISTRO,
   COMPRAS_REALIZADAS,
   PERFIL,
+  ERROR_404
 };
 
 export default RUTA;
